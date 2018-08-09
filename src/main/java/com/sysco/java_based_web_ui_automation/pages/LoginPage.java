@@ -12,12 +12,16 @@ public class LoginPage {
     protected static SyscoLabUI syscoLabUIOgm;
     private By txtGoogleSearch = By.id("lst-ib");
     private By drpDay = By.id("age_select_day");
+    private By SelectDay1 = By.xpath("//*[@id=\"age_select_day\"]/option[11]");
     private By selectDay = By.xpath("//*[@id=\"age_select_day\"]/option[5]");
     private By drpMonth = By.id("age_select_month");
+    private By selectMonth1 = By.xpath("//*[@id=\"age_select_month\"]/option[3]");
     private By selectMonth = By.xpath("//*[@id=\"age_select_month\"]/option[2]");
     private By drpYear = By.id("age_select_year");
+    private By selectYear1 = By.xpath("//*[@id=\"age_select_year\"]/option[2]");
     private By selectYear = By.xpath("//*[@id=\"age_select_year\"]/option[14]");
     private By btnEnter = By.id("age_confirm_btn");
+    private By errorMsg = By.xpath("//*[@id=\"age_missing_message\"]/span");
 
 
     public static void loadLoginPage(Capabilities capabilities, String url) {
@@ -41,12 +45,20 @@ public class LoginPage {
         syscoLabUIOgm.click(drpDay);
     }
 
+    public void selectInvalidDate(){
+        syscoLabUIOgm.click(SelectDay1);
+    }
+
     public void selectDate(){
         syscoLabUIOgm.click(selectDay);
     }
 
     public void clickMonth(){
         syscoLabUIOgm.click(drpMonth);
+    }
+
+    public void selectInvalidMonth(){
+        syscoLabUIOgm.click(selectMonth1);
     }
 
     public void selectMonth(){
@@ -57,12 +69,20 @@ public class LoginPage {
         syscoLabUIOgm.click(drpYear);
     }
 
+    public void selectInvalidYear(){
+        syscoLabUIOgm.click(selectYear1);
+    }
+
     public void selectYear(){
         syscoLabUIOgm.click(selectYear);
     }
 
     public void clickEnter(){
         syscoLabUIOgm.click(btnEnter);
+    }
+
+    public String returnErrorMsg(){
+        return syscoLabUIOgm.getText(errorMsg);
     }
 
 }

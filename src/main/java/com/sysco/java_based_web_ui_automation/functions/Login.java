@@ -33,6 +33,16 @@ public class Login  {
 
     }
 
+    public static void setInvalidBirthday(){
+        ogmLoginPage.clickDate();
+        ogmLoginPage.selectInvalidDate();
+        ogmLoginPage.clickMonth();
+        ogmLoginPage.selectInvalidMonth();
+        ogmLoginPage.clickYear();
+        ogmLoginPage.selectInvalidYear();
+        ogmLoginPage.clickEnter();
+    }
+
     public static void setBirthday(){
         ogmLoginPage.clickDate();
         ogmLoginPage.selectDate();
@@ -40,10 +50,12 @@ public class Login  {
         ogmLoginPage.selectMonth();
         ogmLoginPage.clickYear();
         ogmLoginPage.selectYear();
-    }
-
-    public static void submitBirthday(){
         ogmLoginPage.clickEnter();
     }
+
+    public static String returnErrorMsg(){
+        return ogmLoginPage.returnErrorMsg();
+    }
+
 
 }
