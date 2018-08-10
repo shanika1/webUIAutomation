@@ -20,7 +20,7 @@ public class LoginTest extends TestBase {
 
     @BeforeClass
     public void init(ITestContext iTestContext) {
-        iTestContext.setAttribute("feature", "Login - ValidLogin");
+        iTestContext.setAttribute("feature", "Bundabergrum - Checkout");
     }
 
     @Test(description = "TC_01", alwaysRun = true)
@@ -32,15 +32,11 @@ public class LoginTest extends TestBase {
         softAssert.assertEquals(Login.returnErrorMsg(),"Sorry, your age or location does not permit you to enter at this time.");
         Login.setBirthday();
         softAssert.assertAll();
-
     }
 
     @Test(dependsOnMethods = "testLogin", description = "TC_02", alwaysRun = true)
     public void checkMyAccount() throws Exception {
-
         Home.clickMyAccount();
-
-
     }
 
     @Test(dependsOnMethods = "checkMyAccount", description = "TC_03", alwaysRun = true)
@@ -99,15 +95,32 @@ public class LoginTest extends TestBase {
     }
 
     @Test(dependsOnMethods = "getAccountTitle", description = "TC_10", alwaysRun = true)
-    public void removeItems() throws Exception {
-        Cart.clickCartItems();
+    public void removeCartItems() throws Exception{
+        SoftAssert softAssert = new SoftAssert();
+        Cart.clickCartIcon();
         Cart.removeCartItem();
+        Cart.clickCartIcon();
+        softAssert.assertEquals(Cart.isDisplayedZeroInCart(),"0","Expected value does not displayed");
+        softAssert.assertAll();
     }
 
-    @Test(dependsOnMethods = "removeItems", description = "TC_11", alwaysRun = true)
+    @Test(dependsOnMethods = "removeCartItems", description = "TC_11", alwaysRun = true)
     public void addItemtoCart() throws Exception {
         Cart.addItemtoCart();
     }
+
+//    @Test(dependsOnMethods = "addItemtoCart", description = "TC_13", alwaysRun = true)
+//    public void checkSelectedItem() throws Exception {
+//        SoftAssert softAssert = new SoftAssert();
+//        softAssert.assertTrue(Cart.checkItemName(),"ROYAL LIQUEUR - MIXED PACK 4");
+//        softAssert.assertTrue(Cart.checkItemPrice(), "$129.95");
+//        softAssert.assertAll();
+//    }
+//
+//    @Test(dependsOnMethods = "checkSelectedItem", description = "TC_14", alwaysRun = true)
+//    public void clickCheckoutBtn() throws Exception {
+//        Cart.clickCheckout();
+//    }
 
 
 }

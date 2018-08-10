@@ -10,12 +10,12 @@ public class Cart {
         return ogmCartPage.getAccountTitle();
     }
 
-    public static void clickCartItems(){
-        ogmCartPage.getCartItems();
+    public static void clickCartIcon(){
+        ogmCartPage.clickCartIcon();
     }
 
-    public static void removeCartItem(){
-        ogmCartPage.removeCartItems();
+    public static void removeCartItem() {
+        ogmCartPage.removeCartItem();
     }
 
     public static void addItemtoCart(){
@@ -23,5 +23,21 @@ public class Cart {
         ogmCartPage.selectBundleOffers();
         ogmCartPage.selectBundleOfferItem();
         ogmCartPage.addItemToCart();
+    }
+
+    public static boolean checkItemName(){
+        return ogmCartPage.isDisplayedItemName();
+    }
+
+    public static boolean checkItemPrice(){
+        return ogmCartPage.isDisplayedItemPrice();
+    }
+
+    public static void clickCheckout(){
+        ogmCartPage.clickCheckOut();
+    }
+
+    public static String isDisplayedZeroInCart() {
+        return  ogmCartPage.isDisplayedZeroInCart();
     }
 }
