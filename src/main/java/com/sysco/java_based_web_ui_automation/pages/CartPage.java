@@ -17,18 +17,32 @@ public class CartPage extends LoginPage {
     private By lbloffer = By.xpath("//*[@id=\"nav-wrapper\"]/div/div[4]/div[1]/div[1]/ul/li/ul/li[6]/a");
     private By lblofferItem = By.xpath("//*[@id=\"main-image\"]/img");
     private By btnAddtoCart = By.xpath("//*[@id=\"bundleSummary\"]/div/div[3]/button");
-    private By selectedItemPrice = By.xpath("//*[@id=\"topCartContent\"]/div/div/p/span[2]");
-    private By selectedItemName = By.xpath("//*[@id=\"mini-cart\"]/li/div/p/a");
-    private By btnCheckout = By.xpath("//*[@id=\\\"topCartContent\\\"]/div/div/div/button");
+    private By selectedItemPrice = By.xpath("//ol[@id='mini-cart']/li[@class='item odd']//table//span[@class='price']");
+    private By selectedItemName = By.xpath("//ol[@id='mini-cart']//p[@class='product-name']/a[@href='https://www.bundabergrum.com.au/royal-liqueur-mixed-pack-4']");
+    private By btnCheckout = By.xpath("//*[@id=\"topCartContent\"]/div/div/div/button");
     private By cartZeroValue = By.xpath("//*[@id=\"quick-access-list\"]/li[2]/ul/li[3]/div/div[1]/span[2]");
-
+    private By btnProceedtoCheckout = By.xpath("/html/body/div[2]/div[3]/div[2]/div/div[1]/div[1]/div/ul/li[2]/button");
+    private By fldFirstName = By.id("billing:firstname");
+    private By fldLastName = By.id("billing:lastname");
+    private By btnContinue = By.id("delivery-address-button");
+    private By requiredErrorMesg = By.id("advice-required-entry-billing:firstname");
+    String value = "value";
+    private By txtAddress1 = By.id("billing:street1");
+    private By txtAddress2 = By.id("billing:street2");
+    private By contactNumber = By.id("billing:telephone");
+    private By postCode = By.id("billing:postcodesuburbremove");
+    private By selectPostCode = By.id("billing:postcodesuburb");
+    private By postCodeFromDropdown = By.xpath("//*[@id=\"Autocomplete_billing:postcodesuburb\"]/div[1]");
+    private By txtDeliveryOptions = By.xpath("//*[@id=\"opc-shipping_method\"]/div[1]/h2");
+    private By btnNewContinue = By.id("shipping-method-button");
 
     public String getAccountTitle(){
+
         return syscoLabUIOgm.getText(accountTitle);
     }
 
-
     public WebElement findElement(By by){
+
         return this.driver.findElement(by);
     }
 
@@ -81,12 +95,14 @@ public class CartPage extends LoginPage {
         syscoLabUIOgm.click(btnAddtoCart);
     }
 
-    public boolean isDisplayedItemPrice(){
-        return syscoLabUIOgm.isDisplayed(selectedItemPrice);
+    public String isDisplayedItemPrice(){
+        syscoLabUIOgm.sleep(1);
+        return (syscoLabUIOgm.getText(selectedItemPrice));
     }
 
-    public boolean isDisplayedItemName(){
-        return syscoLabUIOgm.isDisplayed(selectedItemName);
+    public String isDisplayedItemName(){
+        syscoLabUIOgm.sleep(1);
+        return (syscoLabUIOgm.getText(selectedItemName));
     }
 
     public void clickCheckOut(){
@@ -96,8 +112,103 @@ public class CartPage extends LoginPage {
         syscoLabUIOgm.sleep(2);
     }
 
+    public void clickProceedtoCheckoutBtn(){
+        syscoLabUIOgm.click(btnProceedtoCheckout);
+    }
+
+    public String isDisplayedFirstName(){
+        return (syscoLabUIOgm.getAttribute(fldFirstName,value));
+    }
+
+    public String isDisplayedLastName(){
+        return (syscoLabUIOgm.getAttribute(fldLastName,value));
+    }
+
+    public void clearFirstName(){
+        syscoLabUIOgm.clear(fldFirstName);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void clearLastName(){
+        syscoLabUIOgm.clear(fldLastName);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void clearAddress1(){
+        syscoLabUIOgm.clear(txtAddress1);
+    }
+
+    public void clearAddress2(){
+        syscoLabUIOgm.clear(txtAddress2);
+    }
+
+    public void clearContactnumber(){
+        syscoLabUIOgm.clear(contactNumber);
+    }
+
+    public void clickContinueBtn(){
+        syscoLabUIOgm.click(btnContinue);
+    }
+
+    public void removePostCode(){
+        syscoLabUIOgm.click(postCode);
+        syscoLabUIOgm.sleep(3);
+    }
+
+    public void selectPostCode(){
+        syscoLabUIOgm.click(selectPostCode);
+    }
+
+    public void addFirstName(String firstName){
+        syscoLabUIOgm.sendKeys(fldFirstName, firstName);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void addLastName(String lastName){
+        syscoLabUIOgm.sendKeys(fldLastName, lastName);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void addAddress1(String address1){
+        syscoLabUIOgm.sendKeys(txtAddress1, address1);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void addAddress2(String address2){
+        syscoLabUIOgm.sendKeys(txtAddress2, address2);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void addContactNumber(String contactNo){
+        syscoLabUIOgm.sendKeys(contactNumber, contactNo);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void addPostCode(String validPostCode){
+        syscoLabUIOgm.sendKeys(selectPostCode, validPostCode);
+        syscoLabUIOgm.sleep(2);
+    }
+
+    public void selectPostCodeFromDropDown(){
+        syscoLabUIOgm.click(postCodeFromDropdown);
+    }
+
+    public String isDisplayedRequiredMesg(){
+        return syscoLabUIOgm.getText(requiredErrorMesg);
+    }
+
     public String isDisplayedZeroInCart() {
         return (syscoLabUIOgm.getText(cartZeroValue));
+    }
+
+    public String isDisplayedDeliveryOptions(){
+        return syscoLabUIOgm.getText(txtDeliveryOptions);
+    }
+
+    public void clickContinueButton(){
+        syscoLabUIOgm.sleep(2);
+        syscoLabUIOgm.click(btnNewContinue);
+        syscoLabUIOgm.sleep(2);
     }
 
 }

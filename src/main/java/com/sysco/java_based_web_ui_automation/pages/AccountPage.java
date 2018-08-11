@@ -40,7 +40,9 @@ public class AccountPage extends LoginPage{
     }
 
     public void clickLogin(){
+
         syscoLabUIOgm.click(btnLogin);
+        syscoLabUIOgm.sleep(3);
     }
 
     public String returnInvalidEmailMsg(){

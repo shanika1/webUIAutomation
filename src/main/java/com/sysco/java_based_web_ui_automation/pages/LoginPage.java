@@ -78,7 +78,9 @@ public class LoginPage {
     }
 
     public void clickEnter(){
+
         syscoLabUIOgm.click(btnEnter);
+        syscoLabUIOgm.sleep(3);
     }
 
     public String returnErrorMsg(){
